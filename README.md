@@ -19,7 +19,7 @@ yarn install
 
 ## Development Server
 
-Start the development server on `http://localhost:3000`:
+Start the development server on `http://localhost:20231`:
 
 ```bash
 # npm
@@ -61,3 +61,9 @@ yarn preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## UI
+
+## Using Quasar
+
+We are using Quasar UI for Vue, check here https://quasar.dev/vue-components/img
