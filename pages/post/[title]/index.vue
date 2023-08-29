@@ -5,7 +5,7 @@
     <div class="text-grey q-mb-lg">
       <strong>Posted by</strong> <NuxtLink to="/author/yussan">yussan</NuxtLink> • 5 days ago • <strong>Tags:</strong> <NuxtLink to="/tag/javascript">javascript</NuxtLink>&nbsp;<NuxtLink to="/tag/nextjs">nextjs</NuxtLink>
     </div> 
-    <content>
+    <article>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
         facilisis nunc nec convallis pulvinar. Nullam sed enim in massa ultrices
@@ -42,7 +42,7 @@
         Praesent congue elementum aliquam. Pellentesque sagittis nunc a odio
         fermentum, ac sodales lectus lobortis
       </p>
-    </content>
+    </article>
   </default-layout>
 </template>
 <script>
