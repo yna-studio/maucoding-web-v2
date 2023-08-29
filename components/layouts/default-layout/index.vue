@@ -3,7 +3,7 @@
     <global-header />
     <div class="q-ma-lg"></div>
     <div v-if="isFullScreen" class="container"><slot></slot></div>
-    <div v-if="!isFullScreen" class="container">
+    <div v-else class="container">
       <div class="row">
         <div class="col-lg-8 col-xs-12">
           <slot></slot>
@@ -51,7 +51,8 @@ export default {
   watch: {
     $route(newVal) {
       const { path } = newVal;
-      const isFullScreen = ALWAYS_FULLSCREEN.includes(path);
+      const firstPath = `/${path.split("/")[1]}`;
+      const isFullScreen = ALWAYS_FULLSCREEN.includes(firstPath);
       if (this.isFullScreen !== isFullScreen) this.isFullScreen = isFullScreen;
     },
   },
