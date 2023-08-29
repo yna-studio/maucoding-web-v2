@@ -29,17 +29,18 @@
 </style>
 
 <script>
-import GlobalHeader from "@components/commons/navigations/global-header";
+import GlobalHeader from "@components/commons/navigations/GlobalHeader";
 import GlobalFooter from "@components/commons/navigations/GlobalFooter";
 import Sidebar from "@components/commons/navigations/GlobalSidebar";
 
-const ALWAYS_FULLSCREEN = ["/posts"];
+const ALWAYS_FULLSCREEN = ["/posts", "/tag", "/author"];
 
 export default {
   data() {
     const { path } = this.$route;
+    const firstPath = `/${path.split("/")[1]}`;
     return {
-      isFullScreen: ALWAYS_FULLSCREEN.includes(path),
+      isFullScreen: ALWAYS_FULLSCREEN.includes(firstPath),
     };
   },
   components: {

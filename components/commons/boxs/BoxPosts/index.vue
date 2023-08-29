@@ -1,27 +1,21 @@
 <template>
   <div class="p-t-lg p-blg">
     <div class="row q-col-gutter-md">
-      <div v-for="(n, key) in data" class="col-6">
+      <div
+        v-for="(n, key) in data"
+        :class="size === 'small' ? 'col-6' : 'col-4'"
+      >
         <card-post />
       </div>
     </div>
-    <div class="row text-center">
-      <div class="col-12 q-pa-lg">
-        <q-btn
-          class="q-pl-md q-pr-md"
-          size="large"
-          to="/posts"
-          label="Post Berikutnya"
-          outline
-          color="purple"
-        />
-      </div>
-    </div>
+    <spiner />
   </div>
 </template>
 
 <script>
+import DefaultLayout from "@components/layouts/default-layout";
 import CardPost from "@components/commons/cards/CardPost";
+import Spiner from "@components/commons/loaders/GlobalSpiner";
 
 export default {
   name: "box-post",
@@ -31,7 +25,15 @@ export default {
     };
   },
   components: {
+    "default-layout": DefaultLayout,
     "card-post": CardPost,
+    spiner: Spiner,
+  },
+  props: {
+    size: {
+      type: String,
+      default: "small",
+    },
   },
 };
 </script>

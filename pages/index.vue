@@ -2,6 +2,18 @@
   <default-layout>
     <title-medium :title="'Latest Post'" />
     <box-posts />
+    <div class="row text-center">
+      <div class="col-12 q-pa-lg">
+        <q-btn
+          class="q-pl-md q-pr-md"
+          size="large"
+          to="/posts"
+          label="Semua Post"
+          outline
+          color="purple"
+        />
+      </div>
+    </div>
   </default-layout>
 </template>
 

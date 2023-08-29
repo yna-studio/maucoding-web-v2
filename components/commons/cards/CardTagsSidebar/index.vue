@@ -4,7 +4,7 @@
       v-for="tag in tags"
       class="q-mr-sm q-mb-sm mcdg-btn-tags"
       size="small"
-      :to="`/posts/tag/${tag}`"
+      :to="`/tag/${tag}`"
       :label="tag"
       outline
       color="purple"

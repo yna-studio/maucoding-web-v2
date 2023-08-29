@@ -16,6 +16,26 @@ a {
     color: inherit;
 }
 
+h1 {
+    font-size: 3em;
+    line-height: 1;
+}
+
+h2 {
+    font-size: 2em;
+    line-height: 1;
+}
+
+content h2,
+content h3 {
+    margin-top: 1.5em;
+}
+
+content img {
+    margin: .5em 0;
+    max-width: 100%;
+}
+
 /* global class */
 .container {
     width: 850px;
