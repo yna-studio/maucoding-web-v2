@@ -21,7 +21,7 @@
 import DefaultLayout from "@components/layouts/default-layout";
 import BoxPosts from "@components/commons/boxs/BoxPosts";
 import TitleMedium from "@components/commons/headings/title-medium";
-import Breadcrumb from "@components/commons/navigations/breadcrumbs";
+import Breadcrumb from "@components/commons/navigations/Breadcrumbs";
 
 export default {
   name: "page-posts",

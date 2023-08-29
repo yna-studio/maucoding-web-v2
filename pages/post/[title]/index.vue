@@ -47,7 +47,7 @@
 </template>
 <script>
 import DefaultLayout from "@components/layouts/default-layout";
-import Breadcrumb from "@components/commons/navigations/breadcrumbs";
+import Breadcrumb from "@components/commons/navigations/Breadcrumbs";
 
 export default {
   data() {
