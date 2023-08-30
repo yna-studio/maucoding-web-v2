@@ -4,12 +4,18 @@
       <div class="col">
         MauCoding &copy; {{ now.getFullYear() }} powered by
         <a target="_blank" rel="noopener noreferer" href="http://byymg.com"
-          ><strong>YMG Teams</strong></a
+          ><strong>YMG Team</strong></a
         >
       </div>
       <div class="col">
         <span :to="menu.link" :key="menu.name" v-for="(menu, key) in menus">
-          <NuxtLink>{{ menu.name }}</NuxtLink>
+          <a
+            target="_blank"
+            rel="noopener noreferer"
+            :href="menu.link"
+            class="text-purple"
+            >{{ menu.name }}</a
+          >
           <span v-if="key < menus.length - 1" class="q-pl-sm q-pr-sm">•</span>
         </span>
       </div>

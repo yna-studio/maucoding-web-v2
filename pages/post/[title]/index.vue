@@ -5,6 +5,10 @@
     <div class="text-grey q-mb-lg">
       <strong>Posted by</strong> <NuxtLink to="/author/yussan">yussan</NuxtLink> • 5 days ago • <strong>Tags:</strong> <NuxtLink to="/tag/javascript">javascript</NuxtLink>&nbsp;<NuxtLink to="/tag/nextjs">nextjs</NuxtLink>
     </div> 
+    <div class="q-pt-sd q-pb-md"> <img style="max-width:100%"
+          src="https://cdn1-production-images-kly.akamaized.net/1AQr3cKKOh-dWG5KIID5q52lW-Y=/1200x900/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/2024686/original/065149900_1521796173-emma_watson.jpeg"
+        /></div> 
+    
     <article>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
