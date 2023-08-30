@@ -56,7 +56,7 @@
   </div>
 </template>
 <script>
-import { toSlug, stripTags, truncate } from "string-manager";
+import { toSlug, stripTags, truncate } from "@helpers/stringManager";
 import dayJS from "@helpers/dateTime";
 
 export default {

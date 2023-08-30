@@ -5,7 +5,7 @@
     </Head>
     <TitleMedium :title="'Latest Post'" />
     <BoxPosts :data="latestPostResponse" />
-    <div class="row text-center">
+    <div v-if="latestPostResponse.status === 200" class="row text-center">
       <div class="col-12 q-pa-lg">
         <q-btn
           class="q-pl-md q-pr-md"

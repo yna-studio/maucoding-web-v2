@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   devServer: {
     port: 20231,
   },
+  build: {
+    transpile: ["axios"],
+  },
   vite: {
     server: {},
   },

@@ -1,8 +1,8 @@
-import SealMiddleware from "seal-middleware";
-import { objToQuery } from "string-manager/dist/modules/httpquery";
+import SealMiddleware from "../../../helpers/sealMiddleware";
+import { objToQuery } from "../../../helpers/stringManager";
 import { serverApiCaller } from "../../../helpers/serverApiCaller";
 
-const Seal = new SealMiddleware.default(process.env.APP_KEY, 10000);
+const Seal = new SealMiddleware(process.env.APP_KEY, 10000);
 
 export default defineEventHandler(async (event) => {
   const headers = getRequestHeaders(event);

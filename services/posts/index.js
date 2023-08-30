@@ -1,5 +1,5 @@
 import { clientApiCaller } from "@helpers/clientApiCaller";
-import { objToQuery } from "string-manager";
+import { objToQuery } from "@helpers/stringManager";
 
 export const fetchPosts = async ({ query }) => {
   const Response = await clientApiCaller({

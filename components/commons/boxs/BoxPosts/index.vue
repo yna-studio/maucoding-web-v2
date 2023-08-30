@@ -7,12 +7,12 @@
       >
         <card-post :key="n._id" :data="n" />
       </div>
-      <div
-        v-if="data.status && data.result.length === 0"
-        class="col-lg-12 text-center q-pa-lg"
-      >
-        {{ data.message }}
-      </div>
+    </div>
+    <div
+      v-if="data?.status && (!data.result || data?.result?.length === 0)"
+      class="text-center text-grey q-pa-lg"
+    >
+      {{ data.message }}
     </div>
     <spiner v-if="!data || !data.status || loading" />
   </div>
