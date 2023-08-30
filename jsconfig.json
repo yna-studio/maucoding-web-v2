@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@": ["./*"],
+        "@components": ["./components/*"],
+        "@public": ["./public/*"],
+        "@helpers": ["./helpers/*"],
+        "@consts": ["./consts/*"],
+        "@services": ["./services/*"],
+      }
+    },
+    "exclude": ["node_modules", ".nuxt", "dist"]
+  }
+  

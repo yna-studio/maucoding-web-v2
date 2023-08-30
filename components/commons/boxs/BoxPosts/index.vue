@@ -1,14 +1,20 @@
 <template>
   <div class="p-t-lg p-blg">
-    <div class="row q-col-gutter-md">
+    <div v-if="data?.status === 200" class="row q-col-gutter-md">
       <div
-        v-for="(n, key) in data"
-        :class="size === 'small' ? 'col-6' : 'col-4'"
+        v-for="(n, key) in data?.result"
+        :class="size === 'small' ? 'col-lg-6 col-sm-12' : 'col-lg-4 col-sm-12'"
       >
-        <card-post />
+        <card-post :key="n._id" :data="n" />
+      </div>
+      <div
+        v-if="data.status && data.result.length === 0"
+        class="col-lg-12 text-center q-pa-lg"
+      >
+        {{ data.message }}
       </div>
     </div>
-    <spiner />
+    <spiner v-if="!data || !data.status || loading" />
   </div>
 </template>
 
@@ -21,7 +27,7 @@ export default {
   name: "box-post",
   data() {
     return {
-      data: [1, 2, 3],
+      loading: !this.data.status,
     };
   },
   components: {
@@ -33,6 +39,20 @@ export default {
     size: {
       type: String,
       default: "small",
+    },
+    data: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+    watch: {
+      data(nextVal) {
+        if (nextVal.status) {
+          console.log("here...");
+          this.loading = false;
+        }
+      },
     },
   },
 };
