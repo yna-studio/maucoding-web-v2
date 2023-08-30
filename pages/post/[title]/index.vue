@@ -49,24 +49,16 @@
     </article>
   </default-layout>
 </template>
-<script>
+
+<script setup>
 import DefaultLayout from "@components/layouts/default-layout";
 import Breadcrumb from "@components/commons/navigations/Breadcrumbs";
 
-export default {
-  data() {
-    return {
-      breadcrumb: [
+const breadcrumb =  [
         { to: "/posts", label: "Posts" },
         {
           label: "This is post Title",
         },
-      ],
-    };
-  },
-  components: {
-    "default-layout": DefaultLayout,
-    breadcrumb: Breadcrumb,
-  },
-};
+      ]
 </script>
+
