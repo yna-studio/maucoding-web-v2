@@ -3,12 +3,18 @@
     <Breadcrumb :data="metaData.breadcrumbData" />
     <TitleMedium :title="metaData.title" />
     <BoxPosts :size="'large'" :data="postData" />
-    <div class="row text-center">
+    <div
+      v-if="
+        postData?.result?.length >= DEFAULT_QUERY.limit &&
+        postData.status !== '200'
+      "
+      class="row text-center"
+    >
       <div class="col-12 q-pa-lg">
         <q-btn
+          @click="loadMoreHandler()"
           class="q-pl-md q-pr-md"
           size="large"
-          to="/posts"
           label="Post Berikutnya"
           outline
           color="purple"
@@ -34,13 +40,13 @@ const route = useRoute();
 const DEFAULT_BREADCRUMB_DATA = [{ to: "/posts", label: "Posts" }];
 
 const DEFAULT_QUERY = {
-  limit: 8,
-  page: 1,
+  limit: 9,
   tag: route.params.tagName || "",
-  username: route.params.userName || "",
+  username: route.params.username || "",
 };
 
 // initiate refs
+const currentPage = ref(1);
 const postData = ref({});
 const metaData = computed({
   get() {
@@ -63,13 +69,32 @@ const metaData = computed({
 });
 
 // fetch post detail to api
-const fetchData = async () => {
-  const response = await fetchPosts({ query: DEFAULT_QUERY });
-  postData.value = response;
+const fetchData = async (nextQuery) => {
+  const query = { ...nextQuery, ...DEFAULT_QUERY };
+  const response = await fetchPosts({ query });
+  if (currentPage.value === 1) {
+    postData.value = response;
+  } else {
+    //do loadmore
+    postData.value.message = response.message;
+    postData.value.status = response.status;
+
+    if (response?.result?.length > 0) {
+      postData.value.result = [...postData.value.result, ...response.result];
+    }
+  }
 };
 
 // onMounted
 onMounted(() => {
-  fetchData();
+  fetchData({ page: currentPage.value });
 });
+
+// functions
+const loadMoreHandler = () => {
+  const nextPage = currentPage.value + 1;
+  currentPage.value = nextPage;
+  return fetchData({ page: nextPage });
+  console.log(currentPage.value);
+};
 </script>

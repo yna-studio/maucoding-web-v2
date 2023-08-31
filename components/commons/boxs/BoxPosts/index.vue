@@ -14,7 +14,7 @@
     >
       {{ data.message }}
     </div>
-    <Spinner v-if="!data || !data.message || loading" />
+    <Spinner v-if="!data.status || loading" />
   </div>
 </template>
 
@@ -27,7 +27,6 @@ export default {
   name: "box-post",
   data() {
     return {
-      loading: !this.data.status,
     };
   },
   components: {
@@ -36,6 +35,10 @@ export default {
     Spinner,
   },
   props: {
+    loading: {
+      type: Boolean,
+      default: false
+    },
     size: {
       type: String,
       default: "small",
@@ -46,12 +49,11 @@ export default {
         return {};
       },
     },
+    mounted() {
+     
+    },
     watch: {
-      data(nextVal) {
-        if (nextVal.message) {
-          this.loading = false;
-        }
-      },
+      
     },
   },
 };
