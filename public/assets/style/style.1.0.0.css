@@ -18,17 +18,27 @@ a {
 
 h1 {
     font-size: 3em;
-    line-height: 1;
+    line-height: 1.1;
 }
 
-h2 {
+article p {
+    line-height: 1.5;
+}
+
+article h2 {
     font-size: 2em;
-    line-height: 1;
+}
+
+article h3 {
+    font-size: 1.5em;
 }
 
 article h2,
-article h3 {
+article h3,
+article h4 {
+    font-weight: bold;
     margin-top: 1.5em;
+    line-height: 1.2;
 }
 
 article img {
@@ -36,9 +46,31 @@ article img {
     max-width: 100%;
 }
 
+article pre {
+    max-width: 100%;
+    background: rgb(11, 11, 11);
+    padding: 1em;
+    color: #FFF;
+    white-space: pre-wrap;
+    /* css-3 */
+    white-space: -moz-pre-wrap;
+    /* Mozilla, since 1999 */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    word-wrap: break-word;
+    /* Internet Explorer 5.5+ */
+}
+
+article a {
+    color: gray;
+    text-decoration: underline;
+}
+
 /* global class */
 .container {
-    width: 850px;
+    width: 900px;
     max-width: 100%;
     margin: 0 auto;
 }

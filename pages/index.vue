@@ -21,14 +21,18 @@
 </template>
 
 <script setup>
+// components
 import DefaultLayout from "@components/layouts/default-layout";
 import TitleMedium from "@components/commons/headings/title-medium";
 import BoxPosts from "@components/commons/boxs/BoxPosts";
 
+// consts
 import { DEFAULT_TITLE, DEFAULT_DESCRIPTION } from "@consts/meta";
 
+// helpers
 import { metaGeneratorObject } from "@helpers/metaGenerator";
 
+// services
 import { fetchPosts } from "@services/posts";
 
 const DEFAULT_QUERY = {
@@ -36,7 +40,6 @@ const DEFAULT_QUERY = {
   limit: 6,
 };
 
-const config = useRuntimeConfig();
 const title = `${DEFAULT_TITLE} - ${DEFAULT_DESCRIPTION}`;
 const latestPostResponse = await fetchPosts({ query: DEFAULT_QUERY });
 </script>

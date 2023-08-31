@@ -1,64 +1,92 @@
 <template>
   <default-layout>
-    <breadcrumb :data="breadcrumb" />
-    <h1 class="text-weight-bold" fontSize="md">Post Title</h1>
-    <div class="text-grey q-mb-lg">
-      <strong>Posted by</strong> <NuxtLink to="/author/yussan">yussan</NuxtLink> • 5 days ago • <strong>Tags:</strong> <NuxtLink to="/tag/javascript">javascript</NuxtLink>&nbsp;<NuxtLink to="/tag/nextjs">nextjs</NuxtLink>
-    </div> 
-    <div class="q-pt-sd q-pb-md"> <img style="max-width:100%"
-          src="https://cdn1-production-images-kly.akamaized.net/1AQr3cKKOh-dWG5KIID5q52lW-Y=/1200x900/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/2024686/original/065149900_1521796173-emma_watson.jpeg"
-        /></div> 
-    
-    <article>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-        facilisis nunc nec convallis pulvinar. Nullam sed enim in massa ultrices
-        semper eget a libero. Praesent accumsan, odio id auctor vestibulum, elit
-        enim accumsan lectus, at varius ipsum dui eget risus. Proin consectetur,
-        metus ac consectetur sollicitudin, tortor dui ullamcorper elit, et
-        suscipit felis diam id sem. Vestibulum enim magna, egestas sed dictum
-        quis, dignissim ac risus. Fusce leo ligula, feugiat quis elementum eget,
-        malesuada eu felis. Vestibulum rutrum turpis turpis, ac faucibus elit
-        euismod ac. Curabitur feugiat, tortor ac blandit condimentum, tellus dui
-        vehicula risus, eu ullamcorper purus nisl quis mauris. Aliquam laoreet
-        volutpat libero, in porta orci luctus et.
-      </p>
-      <p>
-        <h2>This is Heading 2</h2>
-        Nunc auctor nunc a eros blandit cursus. Integer consequat interdum mi, a
-        tempus diam cursus et. Fusce nec lacus at leo aliquam posuere. Donec
-        semper at ex sit amet ultricies. Nullam massa felis, posuere vitae
-        pellentesque sit amet, auctor quis ex. Integer sit amet elit lacinia,
-        posuere nisi eget, finibus nulla. Nam id lacinia velit, at gravida nisl.
-        Integer non volutpat lorem. Aenean nec lorem in elit mollis vehicula.
-        Vestibulum finibus nisi vitae libero fermentum, ut finibus eros
-        ullamcorper. Nunc facilisis ligula arcu, in pharetra orci accumsan quis.
-        Fusce ultricies a diam ut euismod.
-      </p>
-      <p>
-        <img
-          src="https://cdn1-production-images-kly.akamaized.net/1AQr3cKKOh-dWG5KIID5q52lW-Y=/1200x900/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/2024686/original/065149900_1521796173-emma_watson.jpeg"
-        />
-        Cras congue iaculis vulputate. Sed eget odio sit amet tellus aliquam
-        sollicitudin nec non neque. Vivamus in augue nec orci lacinia placerat
-        sit amet quis velit. Nullam pulvinar neque nunc, ac consectetur nunc
-        ultricies ac. Proin nec tellus commodo, euismod ex eu, accumsan tortor.
-        Praesent congue elementum aliquam. Pellentesque sagittis nunc a odio
-        fermentum, ac sodales lectus lobortis
-      </p>
-    </article>
+    <MetaData :data="metaData" />
+    <Spiner v-if="!postData.status" />
+    <div v-else>
+      <div v-if="!postData._id" class="text-center text-grey-9 q-pa-lg">
+        Post tidak ditemukan
+      </div>
+      <div v-else>
+        <Breadcrumb :data="breadcrumbData" />
+        <h1 class="text-weight-bold" fontSize="md">{{ postData.title }}</h1>
+        <div class="text-grey q-mb-lg">
+          <strong>Posted by</strong>&nbsp;
+          <NuxtLink :to="`/author/${postData.author.username}`">{{
+            postData.author.username
+          }}</NuxtLink>
+          •
+          {{ postData.views }} Views •
+          {{ dayJS(postData.updated_on * 1000).fromNow() }}
+          <br />
+          <strong>Tags</strong>&nbsp;
+          <NuxtLink v-for="(tag, key) in postData.tags" :to="`/tag/${tag}`"
+            >{{ tag }}{{ key < postData.tags.length && ", " }}</NuxtLink
+          >
+        </div>
+        <div class="q-pt-sd q-pb-md">
+          <img
+            style="max-width: 100%"
+            :alt="postData.title"
+            :src="postData.image.original"
+          />
+        </div>
+        <article v-html="postData.content" />
+      </div>
+    </div>
   </default-layout>
 </template>
 
 <script setup>
+import { ref, watch, computed } from "vue";
+import { useRouter, useRoute } from "vue-router";
+
+// helpers
+import dayJS from "@helpers/dateTime";
+
+// consts
+import { DEFAULT_TITLE, DEFAULT_DESCRIPTION } from "@consts/meta";
+
+// components
 import DefaultLayout from "@components/layouts/default-layout";
 import Breadcrumb from "@components/commons/navigations/Breadcrumbs";
+import MetaData from "@components/commons/seo/MetaData";
+import Spiner from "@components/commons/loaders/GlobalSpiner";
 
-const breadcrumb =  [
-        { to: "/posts", label: "Posts" },
-        {
-          label: "This is post Title",
-        },
-      ]
+// services
+import { fetchPostDetail } from "@services/posts";
+
+const DEFAULT_BREADCRUMB_DATA = [{ to: "/posts", label: "Posts" }];
+
+const router = useRouter();
+const route = useRoute();
+const postId = computed({
+  get() {
+    const titleArr = route.params.title.split("-");
+    return titleArr[titleArr.length - 1];
+  },
+  // set(newVal) {
+  // }
+});
+const metaData = ref({
+  title: "",
+  description: "",
+});
+const breadcrumbData = ref(DEFAULT_BREADCRUMB_DATA);
+const postData = ref({});
+
+// fetch post detail to api
+const fetchData = async () => {
+  const response = await fetchPostDetail({ postId: postId.value });
+  postData.value = response;
+  if (response._id) {
+    const newBreadcrumbData = [...DEFAULT_BREADCRUMB_DATA];
+    newBreadcrumbData.push({ label: response.title });
+    breadcrumbData.value = newBreadcrumbData;
+  }
+};
+
+// onMounted
+onMounted(() => {
+  fetchData();
+});
 </script>
-

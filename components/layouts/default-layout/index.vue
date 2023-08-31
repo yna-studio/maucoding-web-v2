@@ -8,7 +8,7 @@
         <div class="col-lg-8 col-xs-12">
           <slot></slot>
         </div>
-        <div class="col-lg-4 col-xs-12 q-pl-md mcdg-sidebar">
+        <div class="col-lg-4 col-xs-12 q-pl-lg mcdg-sidebar">
           <!-- home right sidebar -->
           <sidebar />
           <!-- end of home right sidebar -->

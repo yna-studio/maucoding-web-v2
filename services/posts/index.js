@@ -8,9 +8,9 @@ export const fetchPosts = async ({ query }) => {
   return Response;
 };
 
-// export const fetchPostDetail = async ({ query }) => {
-//   const Response = await clientApiCaller({
-//     endpoint: `/api/post?${objToQuery(query)}`,
-//   });
-//   return Response;
-// };
+export const fetchPostDetail = async ({ postId }) => {
+  const Response = await clientApiCaller({
+    endpoint: `/api/post/${postId}`,
+  });
+  return Response;
+};
