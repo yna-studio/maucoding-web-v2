@@ -1,6 +1,6 @@
 <template>
   <div class="p-t-lg p-blg">
-    <div v-if="data?.status === 200" class="row q-col-gutter-sm">
+    <div v-if="data?.result?.length > 0" class="row q-col-gutter-sm">
       <div
         v-for="(n, key) in data?.result"
         :class="size === 'small' ? 'col-md-6 col-xs-12' : 'col-md-4 col-xs-12'"
@@ -26,8 +26,7 @@ import Spinner from "@components/commons/loaders/GlobalSpiner";
 export default {
   name: "box-post",
   data() {
-    return {
-    };
+    return {};
   },
   components: {
     "default-layout": DefaultLayout,
@@ -37,7 +36,7 @@ export default {
   props: {
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     size: {
       type: String,
@@ -49,12 +48,8 @@ export default {
         return {};
       },
     },
-    mounted() {
-     
-    },
-    watch: {
-      
-    },
+    mounted() {},
+    watch: {},
   },
 };
 </script>

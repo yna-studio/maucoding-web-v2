@@ -6,7 +6,7 @@
     <div
       v-if="
         postData?.result?.length >= DEFAULT_QUERY.limit &&
-        postData.status !== '200'
+        postData.status === 200
       "
       class="row text-center"
     >
@@ -40,13 +40,14 @@ const route = useRoute();
 const DEFAULT_BREADCRUMB_DATA = [{ to: "/posts", label: "Posts" }];
 
 const DEFAULT_QUERY = {
-  limit: 9,
+  limit: 3,
   tag: route.params.tagName || "",
   username: route.params.username || "",
+  draft: false,
 };
 
 // initiate refs
-const currentPage = ref(1);
+const currentPage = ref(0);
 const postData = ref({});
 const metaData = computed({
   get() {
@@ -71,8 +72,10 @@ const metaData = computed({
 // fetch post detail to api
 const fetchData = async (nextQuery) => {
   const query = { ...nextQuery, ...DEFAULT_QUERY };
+  // if (query.page !== 0) query.page = DEFAULT_QUERY.limit * (query.page - 1);
+
   const response = await fetchPosts({ query });
-  if (currentPage.value === 1) {
+  if (!query.lastupdatedon) {
     postData.value = response;
   } else {
     //do loadmore
@@ -92,9 +95,11 @@ onMounted(() => {
 
 // functions
 const loadMoreHandler = () => {
-  const nextPage = currentPage.value + 1;
-  currentPage.value = nextPage;
-  return fetchData({ page: nextPage });
-  console.log(currentPage.value);
+  // const nextPage = currentPage.value + 1;
+  // currentPage.value = nextPage;
+  const nextQuery = {};
+  nextQuery.lastupdatedon =
+    postData.value.result[postData.value.result.length - 1].updated_on;
+  return fetchData(nextQuery);
 };
 </script>
