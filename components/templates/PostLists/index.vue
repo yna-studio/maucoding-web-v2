@@ -40,7 +40,7 @@ const route = useRoute();
 const DEFAULT_BREADCRUMB_DATA = [{ to: "/posts", label: "Posts" }];
 
 const DEFAULT_QUERY = {
-  limit: 3,
+  limit: 9,
   tag: route.params.tagName || "",
   username: route.params.username || "",
   draft: false,
