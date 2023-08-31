@@ -30,7 +30,7 @@ export default {
     let title = "Post";
     const breadcrumbs = [{ to: "/posts", label: "Posts" }];
     if (tagName) {
-      title += ` by tag ${tagName}`;
+      title += ` by tag "${tagName}"`;
       breadcrumbs.push({ label: title });
     }
     if (username) {
