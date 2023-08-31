@@ -5,10 +5,10 @@
     <div v-if="isFullScreen" class="container"><slot></slot></div>
     <div v-else class="container">
       <div class="row">
-        <div class="col-lg-8 col-xs-12">
+        <div class="col-lg-8 col-md-8 col-xs-12">
           <slot></slot>
         </div>
-        <div class="col-lg-4 col-xs-12 q-pl-lg mcdg-sidebar">
+        <div class="col-lg-4 col-md-4 col-xs-12 q-pl-lg mcdg-sidebar">
           <!-- home right sidebar -->
           <sidebar />
           <!-- end of home right sidebar -->

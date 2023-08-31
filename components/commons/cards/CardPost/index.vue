@@ -1,8 +1,8 @@
 <template>
   <div>
-    <q-card flat bordered>
+    <q-card class="q-mb-lg" flat bordered>
       <NuxtLink :to="`/post/${toSlug(`${data.nospace_title} ${data._id}`)}`">
-        <q-img height="200px" alt="data.title" :src="data.image.small" />
+        <q-img height="200px" alt="data.title" :src="data.image['600']" />
       </NuxtLink>
       <q-card-section>
         <div

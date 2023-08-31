@@ -3,18 +3,18 @@
     <div v-if="data?.status === 200" class="row q-col-gutter-sm">
       <div
         v-for="(n, key) in data?.result"
-        :class="size === 'small' ? 'col-lg-6 col-sm-12' : 'col-lg-4 col-sm-12'"
+        :class="size === 'small' ? 'col-md-6 col-xs-12' : 'col-md-4 col-xs-12'"
       >
         <card-post :key="n._id" :data="n" />
       </div>
     </div>
     <div
-      v-if="data?.status && (!data.result || data?.result?.length === 0)"
+      v-if="data?.message && (!data.result || data?.result?.length === 0)"
       class="text-center text-grey q-pa-lg"
     >
       {{ data.message }}
     </div>
-    <Spinner v-if="!data || !data.status || loading" />
+    <Spinner v-if="!data || !data.message || loading" />
   </div>
 </template>
 
@@ -48,8 +48,7 @@ export default {
     },
     watch: {
       data(nextVal) {
-        if (nextVal.status) {
-          console.log("here...");
+        if (nextVal.message) {
           this.loading = false;
         }
       },

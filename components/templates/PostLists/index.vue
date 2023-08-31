@@ -1,8 +1,8 @@
 <template>
-  <default-layout>
-    <breadcrumb :data="breadcrumbs" />
-    <title-medium :title="title" />
-    <box-posts :size="'large'" />
+  <DefaultLayout>
+    <Breadcrumb :data="metaData.breadcrumbData" />
+    <TitleMedium :title="metaData.title" />
+    <BoxPosts :size="'large'" :data="postData" />
     <div class="row text-center">
       <div class="col-12 q-pa-lg">
         <q-btn
@@ -14,44 +14,62 @@
           color="purple"
         />
       </div></div
-  ></default-layout>
+  ></DefaultLayout>
 </template>
 
-<script>
+<script setup>
+import { ref, computed } from "vue";
+import { useRoute } from "vue-router";
+
+// components
 import DefaultLayout from "@components/layouts/default-layout";
 import BoxPosts from "@components/commons/boxs/BoxPosts";
 import TitleMedium from "@components/commons/headings/title-medium";
 import Breadcrumb from "@components/commons/navigations/Breadcrumbs";
 
-export default {
-  name: "page-posts",
-  data() {
-    const { tagName, username } = this.$route.params;
-    let title = "Post";
-    const breadcrumbs = [{ to: "/posts", label: "Posts" }];
+// services
+import { fetchPosts } from "@services/posts";
+
+const route = useRoute();
+const DEFAULT_BREADCRUMB_DATA = [{ to: "/posts", label: "Posts" }];
+
+const DEFAULT_QUERY = {
+  limit: 8,
+  page: 1,
+  tag: route.params.tagName || "",
+  username: route.params.userName || "",
+};
+
+// initiate refs
+const postData = ref({});
+const metaData = computed({
+  get() {
+    const { tagName, username } = route.params;
+    const newBreadcrumbData = [...DEFAULT_BREADCRUMB_DATA];
+    let title = "Posts";
     if (tagName) {
       title += ` by tag "${tagName}"`;
-      breadcrumbs.push({ label: title });
+      newBreadcrumbData.push({ label: title });
     }
     if (username) {
       title += ` by ${username}`;
-      breadcrumbs.push({ label: title });
+      newBreadcrumbData.push({ label: title });
     }
     return {
       title,
-      breadcrumbs,
+      breadcrumbData: newBreadcrumbData,
     };
   },
-  components: {
-    "box-posts": BoxPosts,
-    "default-layout": DefaultLayout,
-    "title-medium": TitleMedium,
-    breadcrumb: Breadcrumb,
-  },
-  watch: {
-    $route(nextVal) {
-      console.log("nextVal", nextVal);
-    },
-  },
+});
+
+// fetch post detail to api
+const fetchData = async () => {
+  const response = await fetchPosts({ query: DEFAULT_QUERY });
+  postData.value = response;
 };
+
+// onMounted
+onMounted(() => {
+  fetchData();
+});
 </script>
