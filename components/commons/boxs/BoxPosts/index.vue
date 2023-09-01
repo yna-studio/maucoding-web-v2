@@ -3,7 +3,11 @@
     <div v-if="data?.result?.length > 0" class="row q-col-gutter-sm">
       <div
         v-for="(n, key) in data?.result"
-        :class="size === 'small' ? 'col-md-6 col-xs-12' : 'col-md-4 col-xs-12'"
+        :class="
+          size === 'small'
+            ? 'col-md-6 col-sm-6 col-xs-6'
+            : 'col-md-4 col-sm-6 col-xs-6'
+        "
       >
         <card-post :key="n._id" :data="n" />
       </div>
