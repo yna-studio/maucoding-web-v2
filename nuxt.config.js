@@ -4,6 +4,48 @@ export default defineNuxtConfig({
   devServer: {
     port: 20231,
   },
+  // Global page headers: https://go.nuxtjs.dev/config-head
+  app: {
+    head: {
+      title: "MauCoding - Tech from engineer perspective",
+      htmlAttrs: {
+        lang: "id",
+      },
+      script:
+        process.env.NODE_ENV !== "development"
+          ? [
+              {
+                hid: "ganal-script1",
+                src: "https://www.googletagmanager.com/gtag/js?id=G-9Q4K6G3KHT",
+                type: "text/javascript",
+                charset: "utf-8",
+                async: true,
+                defer: true,
+              },
+              {
+                hid: "ganal-script2",
+                innerHTML: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', 'G-9Q4K6G3KHT');
+          `,
+                type: "text/javascript",
+                charset: "utf-8",
+                async: true,
+                defer: true,
+              },
+              {
+                hid: "gads",
+                async: true,
+                src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4468477322781117",
+                crossorigin: "anonymous",
+              },
+            ]
+          : [],
+    },
+  },
   build: {
     transpile: ["axios"],
   },
