@@ -8,26 +8,54 @@
       </div>
       <div v-else>
         <Breadcrumb :data="breadcrumbData" />
-        <h1 class="text-weight-bold" fontSize="md">
-          {{ data?.title }}
-        </h1>
-        <div class="text-grey q-mb-lg">
-          <strong>Posted by</strong>&nbsp;
+        <div class="q-pt-sd q-pb-md q-mb-lg">
+          <q-img :alt="data?.title" :src="data?.image.original" />
+        </div>
+        <div>
+          <q-item class="no-padding">
+            <q-item-section side>
+              <NuxtLink :to="`/author/${data?.author.username}`">
+                <q-avatar round size="48px">
+                  <img :src="data?.author.avatar.small" />
+                  <!-- <q-badge floating color="teal">new</q-badge> -->
+                </q-avatar>
+              </NuxtLink>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label
+                ><NuxtLink :to="`/author/${data?.author.username}`">{{
+                  data?.author.username
+                }}</NuxtLink></q-item-label
+              >
+              <q-item-label caption
+                >Posted {{ dayJS(data?.updated_on * 1000).fromNow() }} •
+                {{ data?.views | 1 }} Dibaca
+              </q-item-label>
+            </q-item-section>
+            <!-- <q-item-section side> 3 min ago </q-item-section> -->
+          </q-item>
+          <!-- <strong>Posted by</strong>&nbsp;
           <NuxtLink :to="`/author/${data?.author.username}`">{{
             data?.author.username
           }}</NuxtLink>
           •
           {{ data?.views }} Views •
-          {{ dayJS(data?.updated_on * 1000).fromNow() }}
-          <br />
-          <strong>Tags</strong>&nbsp;
-          <NuxtLink v-for="(tag, key) in data?.tags" :to="`/tag/${tag}`"
-            >{{ tag }}{{ key < data?.tags.length && ", " }}</NuxtLink
+          {{ dayJS(data?.updated_on * 1000).fromNow() }} -->
+        </div>
+        <h1 class="text-weight-bold" fontSize="md">
+          {{ data?.title }}
+        </h1>
+        <div class="q-mb-lg">
+          <strong> Tags:&nbsp;&nbsp;</strong>
+          <NuxtLink
+            style="text-transform: uppersize"
+            class="text-orange-9 q-pr-sm"
+            v-for="(tag, key) in data?.tags"
+            :to="`/tag/${tag.toLowerCase()}`"
+            >{{ tag.toUpperCase() }}</NuxtLink
           >
         </div>
-        <div class="q-pt-sd q-pb-md">
-          <q-img :alt="data?.title" :src="data?.image.original" />
-        </div>
+
         <article v-html="data?.content" />
       </div>
     </div>
