@@ -1,12 +1,11 @@
-# Nuxt 3 Minimal Starter
+# MauCoding V2
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+built with Nuxt 3, [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## HOST
+## Hosts
 
-### Development
-
-https://maucoding-web-v2.vercel.app/
+- Development: https://maucoding-web-v2.vercel.app/
+- Production: https://maucoding.com
 
 ## Setup
 
@@ -57,19 +56,17 @@ Locally preview production build:
 
 ```bash
 # npm
-npm run preview
+npm run start
 
 # pnpm
-pnpm run preview
+pnpm run start
 
 # yarn
-yarn preview
+yarn start
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
 ## UI
 
-## Using Quasar
+### Quasar
 
 We are using Quasar UI for Vue, check here https://quasar.dev/vue-components/img
