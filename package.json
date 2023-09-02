@@ -7,7 +7,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "start": "PORT=20231 node .output/server/index.mjs"
+    "start": "PORT=20231 MCDG_BE_HOST=http://159.65.1.114:9091 MCDG_WEB_HOST=http://localhost:20231 APP_KEY=oopsreview-development node .output/server/index.mjs"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",

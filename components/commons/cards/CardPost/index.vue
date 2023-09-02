@@ -2,7 +2,7 @@
   <div>
     <q-card class="q-mb-lg" flat bordered>
       <NuxtLink :to="`/post/${toSlug(`${data.nospace_title} ${data._id}`)}`">
-        <q-img height="200px" alt="data.title" :src="data.image['600']" />
+        <q-img height="200px" :alt="data.title" :src="data.image['600']" />
       </NuxtLink>
       <q-card-section>
         <div
@@ -25,11 +25,12 @@
         <NuxtLink :to="targetLink">
           <div
             style="
-              height: 100px;
+              height: 90px;
               overflow: hidden;
               display: -webkit-box;
               -webkit-line-clamp: 3;
               -webkit-box-orient: vertical;
+              line-height: 1.5;
             "
             class="text-h6 q-mt-sm q-mb-xs"
           >

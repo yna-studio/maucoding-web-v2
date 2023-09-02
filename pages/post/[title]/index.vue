@@ -1,36 +1,34 @@
 <template>
   <default-layout>
     <MetaData :data="metaData" />
-    <Spiner v-if="!postData.status" />
+    <Spiner v-if="!data.status" />
     <div v-else>
-      <div v-if="!postData._id" class="text-center text-grey-9 q-pa-lg">
-        Post tidak ditemukan
+      <div v-if="!data?._id" class="text-center text-grey-9 q-pa-lg">
+        {{ data?.message || "Post tidak ditemukan" }}
       </div>
       <div v-else>
         <Breadcrumb :data="breadcrumbData" />
-        <h1 class="text-weight-bold" fontSize="md">{{ postData.title }}</h1>
+        <h1 class="text-weight-bold" fontSize="md">
+          {{ data?.title }}
+        </h1>
         <div class="text-grey q-mb-lg">
           <strong>Posted by</strong>&nbsp;
-          <NuxtLink :to="`/author/${postData.author.username}`">{{
-            postData.author.username
+          <NuxtLink :to="`/author/${data?.author.username}`">{{
+            data?.author.username
           }}</NuxtLink>
           •
-          {{ postData.views }} Views •
-          {{ dayJS(postData.updated_on * 1000).fromNow() }}
+          {{ data?.views }} Views •
+          {{ dayJS(data?.updated_on * 1000).fromNow() }}
           <br />
           <strong>Tags</strong>&nbsp;
-          <NuxtLink v-for="(tag, key) in postData.tags" :to="`/tag/${tag}`"
-            >{{ tag }}{{ key < postData.tags.length && ", " }}</NuxtLink
+          <NuxtLink v-for="(tag, key) in data?.tags" :to="`/tag/${tag}`"
+            >{{ tag }}{{ key < data?.tags.length && ", " }}</NuxtLink
           >
         </div>
         <div class="q-pt-sd q-pb-md">
-          <img
-            style="max-width: 100%"
-            :alt="postData.title"
-            :src="postData.image.original"
-          />
+          <q-img :alt="data?.title" :src="data?.image.original" />
         </div>
-        <article v-html="postData.content" />
+        <article v-html="data?.content" />
       </div>
     </div>
   </default-layout>
@@ -42,6 +40,8 @@ import { useRouter, useRoute } from "vue-router";
 
 // helpers
 import dayJS from "@helpers/dateTime";
+import { sealGenerator } from "@helpers/clientApiCaller";
+import { stripTags, truncate } from "@helpers/stringManager";
 
 // consts
 import { DEFAULT_TITLE, DEFAULT_DESCRIPTION } from "@consts/meta";
@@ -53,7 +53,7 @@ import MetaData from "@components/commons/seo/MetaData";
 import Spiner from "@components/commons/loaders/GlobalSpiner";
 
 // services
-import { fetchPostDetail } from "@services/posts";
+import { fetchPostDetail, endpointGetPostDetail } from "@services/posts";
 
 const DEFAULT_BREADCRUMB_DATA = [{ to: "/posts", label: "Posts" }];
 
@@ -68,25 +68,27 @@ const postId = computed({
   // }
 });
 const metaData = ref({
-  title: "",
-  description: "",
+  title: "Post",
+  description: "Post by MauCoding",
 });
 const breadcrumbData = ref(DEFAULT_BREADCRUMB_DATA);
 const postData = ref({});
 
-// fetch post detail to api
-const fetchData = async () => {
-  const response = await fetchPostDetail({ postId: postId.value });
-  postData.value = response;
-  if (response._id) {
-    const newBreadcrumbData = [...DEFAULT_BREADCRUMB_DATA];
-    newBreadcrumbData.push({ label: response.title });
-    breadcrumbData.value = newBreadcrumbData;
-  }
-};
-
-// onMounted
-onMounted(() => {
-  fetchData();
+const { data, error } = await useFetch(endpointGetPostDetail(postId.value), {
+  headers: {
+    seal: sealGenerator(),
+  },
 });
+
+// generate metadata and breadcrumb
+if (data.value._id) {
+  metaData.value = {
+    title: data.value.title,
+    description: truncate(stripTags(data.value.content), 300, "..."),
+  };
+  breadcrumbData.value = [
+    ...DEFAULT_BREADCRUMB_DATA,
+    { label: data.value.title },
+  ];
+}
 </script>

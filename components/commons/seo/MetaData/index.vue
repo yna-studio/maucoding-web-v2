@@ -1,6 +1,7 @@
 <template>
   <Head>
-    <Title>{{ data.title || DEFAULT_TITLE }}</Title>
+    <Title>{{ data.title }}</Title>
+    <Meta name="description" :content="data.description" />
   </Head>
 </template>
 

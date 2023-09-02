@@ -4,7 +4,7 @@
       <q-item v-for="n in data.result" class="no-padding q-mb-lg">
         <q-item-section>
           <NuxtLink :to="`/post/${toSlug(`${n.nospace_title} ${n._id}`)}`">
-            <q-item-label>{{ n.title }}</q-item-label>
+            <q-item-label class="text-bold">{{ n.title }}</q-item-label>
             <q-item-label caption lines="2"
               >{{ truncate(stripTags(n.content), 150, "...") }}.</q-item-label
             >
