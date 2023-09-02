@@ -75,14 +75,6 @@ article a {
     margin: 0 auto;
 }
 
-/* reposiveness global class */
-@media screen and (max-width: 800px) {
-    .container {
-        width: 100vw !important;
-        padding: 10px;
-    }
-}
-
 /* force change quasar style */
 
 .q-tab__label {
@@ -91,4 +83,16 @@ article a {
 
 .q-toolbar {
     border-bottom: 1px solid var(--color-gray-soft);
+}
+
+.q-card>div {
+    text-align: left;
+}
+
+/* reposiveness global class */
+@media screen and (max-width: 800px) {
+    .container {
+        width: 100vw !important;
+        padding: 10px;
+    }
 }
