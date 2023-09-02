@@ -73,6 +73,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       APP_KEY: process.env.APP_KEY,
+      MCDG_WEB_HOST: process.env.MCDG_WEB_HOST,
     },
   },
 });

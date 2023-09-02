@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-card class="q-mb-lg" flat bordered>
-      <NuxtLink :to="`/post/${toSlug(`${data.nospace_title} ${data._id}`)}`">
+      <NuxtLink :to="`/post/${`${data.nospace_title}-${data._id}`}`">
         <q-img height="200px" :alt="data.title" :src="data.image['600']" />
       </NuxtLink>
       <q-card-section>
@@ -57,7 +57,7 @@
   </div>
 </template>
 <script>
-import { toSlug, stripTags, truncate } from "@helpers/stringManager";
+import { stripTags, truncate } from "@helpers/stringManager";
 import dayJS from "@helpers/dateTime";
 
 export default {
@@ -73,7 +73,6 @@ export default {
   methods: {
     stripTags,
     truncate,
-    toSlug,
     dayJS,
   },
 };

@@ -3,7 +3,7 @@
     <q-list>
       <q-item v-for="n in data.result" class="no-padding q-mb-lg">
         <q-item-section>
-          <NuxtLink :to="`/post/${toSlug(`${n.nospace_title} ${n._id}`)}`">
+          <NuxtLink :to="`/post/${`${n.nospace_title}-${n._id}`}`">
             <q-item-label class="text-bold">{{ n.title }}</q-item-label>
             <q-item-label caption lines="2"
               >{{ truncate(stripTags(n.content), 150, "...") }}.</q-item-label
@@ -12,7 +12,7 @@
         </q-item-section>
 
         <q-item-section side top>
-          <NuxtLink :to="`/post/${toSlug(`${n.nospace_title} ${n._id}`)}`">
+          <NuxtLink :to="`/post/${`${n.nospace_title}-${n._id}`}`">
             <q-item-label caption>{{
               dayJS(n.updated_on * 1000).fromNow()
             }}</q-item-label>
@@ -29,7 +29,7 @@
 import Spinner from "@components/commons/loaders/GlobalSpiner";
 
 // helpers
-import { toSlug, stripTags, truncate } from "@helpers/stringManager";
+import { stripTags, truncate } from "@helpers/stringManager";
 import dayJS from "@helpers/dateTime";
 
 // define props

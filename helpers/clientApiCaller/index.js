@@ -1,4 +1,4 @@
-import SealMiddleware from "@helpers/sealMiddleware";
+import SealMiddleware from "../../helpers/sealMiddleware";
 import { baseApiCaller } from "../baseApiCaller";
 import { RESPONSE_GENERAL_ERROR } from "~/consts/responses/responses";
 
