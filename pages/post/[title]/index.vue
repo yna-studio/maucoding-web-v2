@@ -6,7 +6,7 @@
       <div v-if="!data?._id" class="text-center text-grey-9 q-pa-lg">
         {{ data?.message || "Post tidak ditemukan" }}
       </div>
-      <div v-else>
+      <div class="text-left" v-else>
         <Breadcrumb :data="breadcrumbData" />
         <div class="q-pt-sd q-pb-md q-mb-lg">
           <q-img :alt="data?.title" :src="data?.image.original" />
