@@ -21,6 +21,10 @@ h1 {
     line-height: 1.1;
 }
 
+article {
+    word-break: break-word;
+}
+
 article p {
     line-height: 1.8;
 }
