@@ -80,10 +80,10 @@ article a {
 }
 
 /* force change google ads */
-.no-ads,
+/* .no-ads,
 .google-auto-placed {
     display: none !important;
-}
+} */
 
 /* force change quasar style */
 
