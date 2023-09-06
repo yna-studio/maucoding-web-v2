@@ -21,7 +21,7 @@
       </q-item>
     </q-list>
 
-    <Spinner v-if="!data || !data.status || loading" />
+    <Spinner v-if="!data || !data.status" />
   </div>
 </template>
 <script setup>

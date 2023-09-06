@@ -17,6 +17,9 @@
         />
       </div>
     </div>
+    <br />
+    <TitleMedium :title="'Latest Videos'" />
+    <BoxVideos />
   </DefaultLayout>
 </template>
 
@@ -25,6 +28,7 @@
 import DefaultLayout from "@components/layouts/default-layout";
 import TitleMedium from "@components/commons/headings/title-medium";
 import BoxPosts from "@components/commons/boxs/BoxPosts";
+import BoxVideos from "@components/commons/boxs/BoxVideos";
 
 // consts
 import { DEFAULT_TITLE, DEFAULT_DESCRIPTION } from "@consts/meta";

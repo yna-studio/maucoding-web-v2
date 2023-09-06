@@ -30,13 +30,13 @@
               display: -webkit-box;
               -webkit-line-clamp: 3;
               -webkit-box-orient: vertical;
-              line-height: 1.5;
+              line-height: 1.4;
             "
             class="text-h6 q-mt-sm q-mb-xs"
           >
-            {{ data.title }}
+            <strong> {{ data.title }}</strong>
           </div>
-          <div class="text-caption">
+          <div class="text-caption text-grey-80">
             {{ truncate(stripTags(data.content), 100, "...") }}
           </div>
         </NuxtLink>

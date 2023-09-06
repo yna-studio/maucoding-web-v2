@@ -79,6 +79,12 @@ article a {
     margin: 0 auto;
 }
 
+/* force change google ads */
+.no-ads,
+.google-auto-placed {
+    display: none !important;
+}
+
 /* force change quasar style */
 
 .q-tab__label {

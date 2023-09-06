@@ -1,14 +1,7 @@
 <template>
-  <template-post-lists />
+  <TemplatePostList />
 </template>
 
-<script>
+<script setup>
 import TemplatePostList from "@components/templates/PostLists";
-
-export default {
-  name: "page-posts",
-  components: {
-    "template-post-lists": TemplatePostList,
-  },
-};
 </script>

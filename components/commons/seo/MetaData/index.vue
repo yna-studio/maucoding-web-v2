@@ -1,7 +1,28 @@
 <template>
   <Head>
-    <Title>{{ data.title }}</Title>
-    <Meta name="description" :content="data.description" />
+    <Title>{{
+      data.title || `${DEFAULT_TITLE} - ${DEFAULT_DESCRIPTION}`
+    }}</Title>
+    <Meta
+      name="description"
+      :content="
+        data.description ||
+        'Tech from engineer perspective, MauCoding by YMG Team.'
+      "
+    />
+    <!-- start open graph -->
+    <Meta
+      property="og:title"
+      :content="data.title || `${DEFAULT_TITLE} - ${DEFAULT_DESCRIPTION}`"
+    />
+    <Meta property="og:type" content="article" />
+    <Meta property="og:url" :content="data.url || 'https://maucoding.com'" />
+    <Meta
+      property="og:image"
+      content="https://ia.media-imdb.com/images/rock.jpg"
+    />
+    <Meta property="og:site_name" content="MauCoding" />
+    <!-- end of open graph -->
   </Head>
 </template>
 
@@ -16,10 +37,7 @@ const props = defineProps({
   data: {
     type: Object,
     default() {
-      return {
-        title: `${DEFAULT_TITLE} - ${DEFAULT_DESCRIPTION}`,
-        description: "Tech from engineer perspective, MauCoding by YMG Team.",
-      };
+      return {};
     },
   },
 });

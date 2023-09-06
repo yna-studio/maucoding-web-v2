@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TitleMedium :title="'Popular Content'" />
+    <TitleMedium :title="'Popular Posts'" />
     <ListPostsPopular :data="popularPostResponse" />
     <div class="q-mb-lg"></div>
     <div class="q-mb-lg"></div>
