@@ -1,25 +1,27 @@
 <template>
   <DefaultLayout>
-    <Head>
-      <Title>{{ title }}</Title>
-    </Head>
-    <TitleMedium :title="'Latest Post'" />
-    <BoxPosts :data="latestPostResponse" />
-    <div v-if="latestPostResponse.status === 200" class="row text-center">
-      <div class="col-12 q-pa-lg">
-        <q-btn
-          class="q-pl-md q-pr-md"
-          size="large"
-          to="/posts"
-          label="Semua Post"
-          outline
-          color="purple"
-        />
+    <div>
+      <Head>
+        <Title>{{ title }}</Title>
+      </Head>
+      <TitleMedium :title="'Latest Post'" />
+      <BoxPosts :data="latestPostResponse" />
+      <div v-if="latestPostResponse.status === 200" class="row text-center">
+        <div class="col-12 q-pa-lg">
+          <q-btn
+            class="q-pl-md q-pr-md"
+            size="large"
+            to="/posts"
+            label="Semua Post"
+            outline
+            color="purple"
+          />
+        </div>
       </div>
+      <!-- <br />
+      <TitleMedium :title="'Latest Videos'" />
+      <BoxVideos /> -->
     </div>
-    <br />
-    <TitleMedium :title="'Latest Videos'" />
-    <BoxVideos />
   </DefaultLayout>
 </template>
 
