@@ -40,18 +40,29 @@
             {{ truncate(stripTags(data.content), 100, "...") }}
           </div>
         </NuxtLink>
-        <div class="row q-pt-md justify-between">
-          <div class="text-caption">
-            by
-            <NuxtLink :to="`/author/${data.author.username}`">{{
-              data.author.username
-            }}</NuxtLink>
-          </div>
-          <div class="text-caption text-grey">
-            {{ data.views }} views .
-            {{ dayJS(data.updated_on * 1000).fromNow() }}
-          </div>
-        </div>
+
+        <q-item class="no-padding q-mt-lg">
+          <q-item-section side class="q-pr-sm">
+            <NuxtLink :to="`/author/${data?.author.username}`">
+              <q-avatar round size="40px">
+                <img :src="data?.author.avatar.small" />
+                <!-- <q-badge floating color="teal">new</q-badge> -->
+              </q-avatar>
+            </NuxtLink>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label caption
+              ><NuxtLink :to="`/author/${data?.author.username}`">{{
+                data?.author.username
+              }}</NuxtLink></q-item-label
+            >
+            <q-item-label caption
+              >Posted {{ dayJS(data?.updated_on * 1000).fromNow() }} •
+              {{ data?.views | 1 }} Dibaca
+            </q-item-label>
+          </q-item-section>
+          <!-- <q-item-section side> 3 min ago </q-item-section> -->
+        </q-item>
       </q-card-section>
     </q-card>
   </div>
