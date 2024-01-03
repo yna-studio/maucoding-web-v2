@@ -2,6 +2,11 @@
 
 built with Nuxt 3, [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+## Deps
+
+- Framework: Nuxt JS with Vue JS
+- UI: Quasar UI https://quasar.dev/components
+
 ## Hosts
 
 - Development: https://maucoding-web-v2.vercel.app/

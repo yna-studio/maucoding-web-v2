@@ -2,6 +2,15 @@
   <DefaultLayout>
     <TitleMedium :title="metaData.title" />
     <BoxVideos />
+    <div class="col-12 q-pa-lg text-center">
+      <q-btn
+        class="q-pl-md q-pr-md"
+        size="large"
+        label="Load More"
+        outline
+        color="purple"
+      />
+    </div>
   </DefaultLayout>
 </template>
 

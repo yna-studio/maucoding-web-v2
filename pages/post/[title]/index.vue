@@ -32,15 +32,7 @@
                 {{ data?.views | 1 }} Dibaca
               </q-item-label>
             </q-item-section>
-            <!-- <q-item-section side> 3 min ago </q-item-section> -->
           </q-item>
-          <!-- <strong>Posted by</strong>&nbsp;
-          <NuxtLink :to="`/author/${data?.author.username}`">{{
-            data?.author.username
-          }}</NuxtLink>
-          •
-          {{ data?.views }} Views •
-          {{ dayJS(data?.updated_on * 1000).fromNow() }} -->
         </div>
         <h1 class="text-weight-bold" fontSize="md">
           {{ data?.title }}

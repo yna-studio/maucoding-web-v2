@@ -4,7 +4,28 @@
       <Head>
         <Title>{{ title }}</Title>
       </Head>
-      <TitleMedium :title="'Latest Post'" />
+
+      <!-- latest videos box -->
+      <TitleMedium :title="'Latest Videos'" />
+      <BoxVideos />
+      <div v-if="latestPostResponse.status === 200" class="row text-center">
+        <div class="col-12 q-pa-lg">
+          <q-btn
+            class="q-pl-md q-pr-md"
+            size="large"
+            to="/videos"
+            label="All Videos"
+            outline
+            color="purple"
+          />
+        </div>
+      </div>
+      <br />
+      <br />
+      <!-- latest videos box -->
+
+      <!-- latest posts box -->
+      <TitleMedium :title="'Latest Posts'" />
       <BoxPosts :data="latestPostResponse" />
       <div v-if="latestPostResponse.status === 200" class="row text-center">
         <div class="col-12 q-pa-lg">
@@ -12,15 +33,13 @@
             class="q-pl-md q-pr-md"
             size="large"
             to="/posts"
-            label="Semua Post"
+            label="All Posts"
             outline
             color="purple"
           />
         </div>
       </div>
-      <!-- <br />
-      <TitleMedium :title="'Latest Videos'" />
-      <BoxVideos /> -->
+      <!-- latest posts box -->
     </div>
   </DefaultLayout>
 </template>
@@ -43,7 +62,7 @@ import { fetchPosts } from "@services/posts";
 
 const DEFAULT_QUERY = {
   draft: false,
-  limit: 6,
+  limit: 4,
 };
 
 const title = `${DEFAULT_TITLE} - ${DEFAULT_DESCRIPTION}`;
