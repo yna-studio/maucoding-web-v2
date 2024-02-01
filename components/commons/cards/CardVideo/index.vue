@@ -1,9 +1,6 @@
 <template>
   <q-card class="q-mb-lg" flat bordered>
-    <NuxtLink
-      style="position: relative"
-      to="/video/this-is-video-title-hjsdaf6234234"
-    >
+    <NuxtLink style="position: relative" :to="targetLink">
       <!-- play button absolute in center with zindex + 1 -->
       <q-img
         style="
@@ -20,11 +17,7 @@
       />
 
       <!-- video thumbnails -->
-      <q-img
-        height="200px"
-        alt="title"
-        src="https://res.cloudinary.com/dhjkktmal/image/upload/v1691150717/maucoding/2023/PyScript-Menjalankan-Python-di-HTML-Ada-Ada-Aja/2b144f828b23b1e9db4647ef7f11cc87.png.png"
-      />
+      <q-img height="200px" :alt="data.title" :src="data.thumbnails" />
     </NuxtLink>
 
     <!-- text under thumb -->
@@ -39,12 +32,17 @@
           -webkit-box-orient: vertical;
         "
       >
-        <NuxtLink to="/tag" class="text-orange-9 q-pr-sm">TAG 1</NuxtLink>
+        <NuxtLink
+          v-for="n in data.tags"
+          :to="`/videos?tag=${n}`"
+          class="text-orange-9 q-pr-sm"
+          >{{ n.toUpperCase() }}</NuxtLink
+        >
       </div>
       <NuxtLink :to="targetLink">
         <div
           style="
-            height: 35px;
+            height: 62px;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -53,13 +51,16 @@
           "
           class="text-h6 q-mt-sm q-mb-xs"
         >
-          <strong> Video Title</strong>
+          <strong>{{ data.title }}</strong>
         </div>
       </NuxtLink>
 
-      <q-item class="no-padding q-mt-lg">
+      <q-item class="no-padding q-mt-sm">
         <q-item-section>
-          <q-item-label caption>Posted 2 days ago • 60M Ditonton </q-item-label>
+          <q-item-label caption
+            >Uploaded {{ dayJS(data?.createdAt).fromNow() }} •
+            {{ data?.views | 1 }} views
+          </q-item-label>
         </q-item-section>
         <!-- <q-item-section side> 3 min ago </q-item-section> -->
       </q-item>
@@ -69,7 +70,28 @@
 </template>
 
 <script>
+import dayJS from "@helpers/dateTime";
+import { toSlug } from "string-manager";
+
 export default {
   name: "card-video",
+  data() {
+    return {
+      targetLink: `/video/${toSlug(
+        `${this.data.title.toLowerCase()}-${this.data._id}`
+      )}`,
+    };
+  },
+  props: {
+    data: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+  },
+  methods: {
+    dayJS,
+  },
 };
 </script>

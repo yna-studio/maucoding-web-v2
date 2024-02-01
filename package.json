@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "mcdg-v2",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -11,14 +11,14 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@types/node": "^18.17.3",
-    "nuxt": "^3.6.5",
-    "nuxt-quasar-ui": "^2.0.5"
+    "@types/node": "18.17.3",
+    "nuxt": "3.6.5",
+    "nuxt-quasar-ui": "2.0.5"
   },
   "dependencies": {
-    "axios": "^1.5.0",
-    "dayjs": "^1.11.9",
-    "seal-middleware": "^0.1.2",
-    "string-manager": "^3.0.0"
+    "axios": "1.5.0",
+    "dayjs": "1.11.9",
+    "seal-middleware": "0.1.2",
+    "string-manager": "3.0.0"
   }
 }

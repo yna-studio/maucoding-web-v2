@@ -14,7 +14,6 @@ export default defineEventHandler(async (event) => {
   const Res = await serverApiCaller(reqParams);
 
   if (Res.status === 200) {
-    console.log("results", Res.result);
     Res.result.map((n) =>
       params.push({
         path: `/post/${n.nospace_title}-${n._id}`,

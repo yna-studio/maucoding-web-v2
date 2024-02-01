@@ -31,7 +31,7 @@ export default {
   },
   watch: {
     $router(newVal, oldVal) {
-      console.log("newVal", newVal);
+      // console.log("newVal", newVal);
     },
     tab(newVal, oldVal) {
       return this.$router.push(newVal);

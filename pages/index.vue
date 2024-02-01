@@ -7,8 +7,8 @@
 
       <!-- latest videos box -->
       <TitleMedium :title="'Latest Videos'" />
-      <BoxVideos />
-      <div v-if="latestPostResponse.status === 200" class="row text-center">
+      <BoxVideos :data="latestVideoResponse" />
+      <div v-if="latestVideoResponse.status === 200" class="row text-center">
         <div class="col-12 q-pa-lg">
           <q-btn
             class="q-pl-md q-pr-md"
@@ -59,6 +59,7 @@ import { metaGeneratorObject } from "@helpers/metaGenerator";
 
 // services
 import { fetchPosts } from "@services/posts";
+import { fetchVideos } from "@services/videos";
 
 const DEFAULT_QUERY = {
   draft: false,
@@ -67,4 +68,5 @@ const DEFAULT_QUERY = {
 
 const title = `${DEFAULT_TITLE} - ${DEFAULT_DESCRIPTION}`;
 const latestPostResponse = await fetchPosts({ query: DEFAULT_QUERY });
+const latestVideoResponse = await fetchVideos({ query: DEFAULT_QUERY });
 </script>

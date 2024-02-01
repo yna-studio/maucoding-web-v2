@@ -69,7 +69,7 @@ const metaData = computed({
   },
 });
 
-// fetch post detail to api
+// fetch post list to api
 const fetchData = async (nextQuery) => {
   const query = { ...nextQuery, ...DEFAULT_QUERY };
   // if (query.page !== 0) query.page = DEFAULT_QUERY.limit * (query.page - 1);

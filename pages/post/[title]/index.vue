@@ -92,7 +92,6 @@ const metaData = ref({
   description: "Post by MauCoding",
 });
 const breadcrumbData = ref(DEFAULT_BREADCRUMB_DATA);
-const postData = ref({});
 
 const { data, error } = await useFetch(endpointGetPostDetail(postId.value), {
   headers: {

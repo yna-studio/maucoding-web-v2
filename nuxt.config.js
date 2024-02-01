@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
   devServer: {
-    port: 20231,
+    port: process.env.PORT || 20231,
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   app: {
