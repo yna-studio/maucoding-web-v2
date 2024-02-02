@@ -68,8 +68,7 @@ import { useRouter, useRoute } from "vue-router";
 // helpers
 import dayJS from "@helpers/dateTime";
 import { sealGenerator } from "@helpers/clientApiCaller";
-import { stripTags, truncate } from "@helpers/stringManager";
-import { toSlug } from "string-manager";
+import { stripTags, truncate, toSlug } from "@helpers/stringManager";
 
 // consts
 import { DEFAULT_TITLE, DEFAULT_DESCRIPTION } from "@consts/meta";

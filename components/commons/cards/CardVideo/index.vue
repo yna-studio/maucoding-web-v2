@@ -71,7 +71,7 @@
 
 <script>
 import dayJS from "@helpers/dateTime";
-import { toSlug } from "string-manager";
+import { toSlug } from "@helpers/stringManager";
 
 export default {
   name: "card-video",

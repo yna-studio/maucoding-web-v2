@@ -8,13 +8,11 @@ specifiers:
   nuxt: 3.6.5
   nuxt-quasar-ui: 2.0.5
   seal-middleware: 0.1.2
-  string-manager: 3.0.0
 
 dependencies:
   axios: 1.5.0
   dayjs: 1.11.9
   seal-middleware: 0.1.2
-  string-manager: 3.0.0
 
 devDependencies:
   '@nuxt/devtools': 1.0.8_nuxt@3.6.5
@@ -5982,10 +5980,6 @@ packages:
       fast-fifo: 1.3.2
       queue-tick: 1.0.1
     dev: true
-
-  /string-manager/3.0.0:
-    resolution: {integrity: sha512-B/y45BlzatWLxNivJJyP8IQ6A2DDFSWJlrIJ3ZeEkXM+/RJBmy6K+CXhUfYR9m0S/UvQdVLZ9sOAjdixUPratQ==}
-    dev: false
 
   /string-width/4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
