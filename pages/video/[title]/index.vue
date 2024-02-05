@@ -55,6 +55,7 @@
         <article
           v-html="data?.description?.replace(/(?:\r\n|\r|\n)/g, '<br/>')"
         />
+        <br />
         <!-- end video caption -->
       </div>
     </div>

@@ -15,7 +15,7 @@
           @click="loadMoreHandler()"
           class="q-pl-md q-pr-md"
           size="large"
-          label="Post Berikutnya"
+          label="Load More"
           outline
           color="purple"
         />

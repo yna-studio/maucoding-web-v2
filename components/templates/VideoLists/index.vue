@@ -1,10 +1,13 @@
 <template>
   <DefaultLayout>
     <TitleMedium :title="metaData.title" />
-    <BoxVideos :data="videoData" />
-    <div class="col-12 q-pa-lg text-center">
+    <BoxVideos :size="'large'" :data="videoData" :loading="isLoading" />
+    <div
+      v-if="!isLoading && videoData?.result?.length"
+      class="col-12 q-pa-lg text-center"
+    >
       <q-btn
-        v-if="videoData?.value?.length"
+        @click="fetchLoadMore"
         class="q-pl-md q-pr-md"
         size="large"
         label="Load More"
@@ -39,6 +42,7 @@ const DEFAULT_QUERY = {
 };
 
 // initiate refs
+const isLoading = ref(false);
 const currentPage = ref(0);
 const videoData = ref({});
 const metaData = computed({
@@ -70,6 +74,13 @@ const fetchData = async (nextQuery) => {
       videoData.value.result = [...videoData.value.result, ...response.result];
     }
   }
+};
+
+const fetchLoadMore = async () => {
+  isLoading.value = true;
+  setTimeout(() => {
+    isLoading.value = false;
+  }, 2000);
 };
 
 // onMounted

@@ -1,7 +1,14 @@
 <template>
   <div class="p-t-lg p-blg">
     <div v-if="data?.result?.length > 0" class="row q-col-gutter-sm">
-      <div v-for="(n, key) in data.result" class="col-md-6 col-sm-6 col-xs-6">
+      <div
+        v-for="(n, key) in data.result"
+        :class="
+          size === 'small'
+            ? 'col-md-6 col-sm-6 col-xs-6'
+            : 'col-md-4 col-sm-6 col-xs-6'
+        "
+      >
         <card-video :key="key" :data="n" />
       </div>
     </div>
