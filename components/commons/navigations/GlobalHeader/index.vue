@@ -16,17 +16,47 @@
         <q-tab class="q-pa-md" name="/posts" label="POSTS" />
         <q-tab class="q-pa-md" name="/videos" label="VIDEOS" />
       </q-tabs>
-      <q-btn flat round dense icon="search" />
+      <q-btn
+        @click="() => (search = { ...search, ...{ show: !search.show } })"
+        flat
+        round
+        dense
+        icon="search"
+      />
     </q-toolbar>
+
+    <!-- do search -->
+    <div v-if="search.show">
+      <div className="text-right">
+        <q-input
+          style="padding: 0 15px 20px; font-size: 1rem"
+          v-model="search.value"
+          :dense="dense"
+          placeholder="Ketik keyword pencarian disini..."
+          autofocus
+          @keydown.enter="
+            $router.push(`/search/${toSlug(search.value.toLowerCase())}`)
+          "
+        />
+        <!-- <Input type="text" :value="search.value" /> -->
+      </div>
+    </div>
+    <!-- end of do search -->
   </div>
 </template>
 <script>
+import { toSlug } from "@helpers/stringManager";
+
 export default {
   data() {
     const { path } = this.$route;
     const tabActive = `/${path.split("/")[1]}`;
     return {
       tab: tabActive,
+      search: {
+        show: false,
+        value: "",
+      },
     };
   },
   watch: {
@@ -36,6 +66,9 @@ export default {
     tab(newVal, oldVal) {
       return this.$router.push(newVal);
     },
+  },
+  methods: {
+    toSlug,
   },
 };
 </script>

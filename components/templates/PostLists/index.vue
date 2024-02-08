@@ -34,6 +34,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
+// import { useHead } from "vue";
 
 // components
 import DefaultLayout from "@components/layouts/default-layout";

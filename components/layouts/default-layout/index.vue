@@ -33,7 +33,7 @@ import GlobalHeader from "@components/commons/navigations/GlobalHeader";
 import GlobalFooter from "@components/commons/navigations/GlobalFooter";
 import Sidebar from "@components/commons/navigations/GlobalSidebar";
 
-const ALWAYS_FULLSCREEN = ["/posts", "/tag", "/author", "/videos"];
+const ALWAYS_FULLSCREEN = ["/posts", "/tag", "/author", "/videos", "/search"];
 
 export default {
   data() {
