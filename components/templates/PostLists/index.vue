@@ -19,8 +19,16 @@
           outline
           color="purple"
         />
-      </div></div
-  ></DefaultLayout>
+      </div>
+    </div>
+
+    <p
+      v-if="postData.status && postData.status !== 200"
+      class="text-center text-grey"
+    >
+      {{ postData?.message || "Post Not Available" }}
+    </p>
+  </DefaultLayout>
 </template>
 
 <script setup>
