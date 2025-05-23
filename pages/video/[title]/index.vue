@@ -21,7 +21,7 @@
               <NuxtLink :to="`/author`">
                 <q-avatar round size="48px">
                   <img
-                    src="https://maucoding.com/assets/images/mcdg-logo-large.png"
+                    src="https://maucoding.com/assets/images/MCDG v3 square 2x.png"
                     alt="MauCoding avatar"
                   />
                   <!-- <q-badge floating color="teal">new</q-badge> -->

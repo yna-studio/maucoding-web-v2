@@ -5,7 +5,7 @@
       <q-img
         style="cursor: pointer"
         @click="() => $router.push('/')"
-        src="/assets/images/mcdg-logo-large.png"
+        src="/assets/images/MCDG v3 square 2x - icon only.png"
         width="40px"
       />
       <q-toolbar-title style="cursor: pointer" @click="() => $router.push('/')"
