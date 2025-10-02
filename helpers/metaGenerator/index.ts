@@ -1,6 +1,6 @@
 const DEFAULT_TITLE = 'Follooow'
 const DEFAULT_DESC = 'Social media highlight'
-const DEFAULT_IMAGE = '/image/follooow-favicon.png'
+const DEFAULT_IMAGE = '/images/MCDG v3 - icon only - square.png'
 const DEFAULT_URL = 'https://follooow.com'
 
 export const metaGeneratorHTML = ({

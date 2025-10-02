@@ -76,5 +76,5 @@ export default defineNuxtConfig({
       MCDG_WEB_HOST: process.env.MCDG_WEB_HOST,
     },
   },
-  compatibilityDate: "2025-08-18",
+  compatibilityDate: "2025-10-02",
 });
