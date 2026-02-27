@@ -2,6 +2,11 @@
   <div class="container">
     <div class="grid q-pt-lg q-pb-lg">
       <div class="col">
+        <div style="width:80px">
+        <a href="https://id.seedbacklink.com/"><img title="seedbacklink" src="https://id.seedbacklink.com/wp-content/uploads/2025/04/badge-seedbacklink-media.png" alt="seedbacklink" width="100%" height="auto"/></a>
+        </div>
+      </div>
+      <div class="col">
         MauCoding &copy; {{ now.getFullYear() }} powered by
         <a target="_blank" rel="noopener noreferer" href="http://byymg.com"
           ><strong>YMG Team</strong></a
